@@ -1,0 +1,1 @@
+// import Votes from './src/types/votes.ts';
