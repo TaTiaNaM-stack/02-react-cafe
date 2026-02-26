@@ -3,15 +3,18 @@ import css from './App.module.css';
 import CafeInfo from './components/CafeInfo/CafeInfo.tsx';
 import VoteOptions from './components/VoteOptions/VoteOptions.tsx';
 import{type Votes} from './types/votes.ts';
-import{type VoteType} from './types/votes.ts';
-  const votes = {
+import type {VoteType} from './types/votes.ts';
+ 
+   const initialVotes: Votes = {
     good: 0,
     neutral: 0,
     bad: 0
   };
+
 export default function App() {
-  const [votes, setVotes] = useState<Votes>(votes);
-  const handleVote = (type: string) => {
+
+  const [votes, setVotes] = useState<Votes>(initialVotes);
+  const handleVote = (type: VoteType) => {
     setVotes(prevVotes => ({
       ...prevVotes,
       [type]: prevVotes[type] + 1
@@ -27,16 +30,8 @@ export default function App() {
   return (
     <div className={css.app}>
             <CafeInfo />
-      <VoteOptions votes={votes} />
+      <VoteOptions onVote={votes} onReset={handleVote} canReset={resetVotes} />
     </div>
   );
 }
 
-// export default function App() {
-//   return (
-//     <div className={css.app}>
-//       <CafeInfo />
-//       <VoteOptions votes={votes} />
-//     </div>
-//   );
-// }
