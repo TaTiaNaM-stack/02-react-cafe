@@ -1,6 +1,5 @@
-// // import Votes from './src/types/votes.ts';
 import styles from './VoteStats.module.css';
-// // import type {Votes} from '../../types/votes.ts';  
+ 
 interface VoteStatsProps {
 votes: {
     good: number;

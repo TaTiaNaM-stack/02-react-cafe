@@ -31,7 +31,7 @@ export default function App() {
   return (
     <div className={css.app}>
             <CafeInfo />
-      <VoteOptions onVote={handleVote} onReset={resetVotes} canReset={<VoteStats /> ? true : false} />
+      <VoteOptions onVote={handleVote} onReset={resetVotes} canReset={votes.good + votes.neutral + votes.bad > 0 ? true : false} />
       {votes.good + votes.neutral + votes.bad > 0 ? <VoteStats votes={votes} totalVotes={votes.good + votes.neutral + votes.bad} positiveRate={votes.good > 0 ? Math.round((votes.good / (votes.good + votes.neutral + votes.bad)) * 100) : 0} /> : <Notification />}
     </div>
   );
