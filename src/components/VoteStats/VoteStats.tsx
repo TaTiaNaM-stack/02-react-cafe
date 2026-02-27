@@ -1,16 +1,26 @@
 // // import Votes from './src/types/votes.ts';
-// import css from './VoteStats.module.css';
-// // import type {Votes} from '../../types/votes.ts';    
+import styles from './VoteStats.module.css';
+// // import type {Votes} from '../../types/votes.ts';  
+interface VoteStatsProps {
+votes: {
+    good: number;
+    neutral: number;
+    bad: number;
+} 
+totalVotes: number;
+positiveRate: number;
+}
 
-// export default function VoteStats(){
-//     return (
-//         <div className={styles.container}>
-//             <p className={styles.stat}>Good: <strong>0</strong></p>
-//             <p className={styles.stat}>Neutral: <strong>0</strong></p>
-//             <p className={styles.stat}>Bad: <strong>0</strong></p>
-//             <p className={styles.stat}>Total: <strong>0</strong></p>
-//             <p className={styles.stat}>Positive: <strong>0%</strong></p>
-//         </div>
-//     );
 
-// }
+export default function VoteStats({votes: {good, neutral, bad}, totalVotes, positiveRate}: VoteStatsProps){
+    return (
+        <div className={styles.container}>
+            <p className={styles.stat}>Good: <strong>{good}</strong></p>
+            <p className={styles.stat}>Neutral: <strong>{neutral}</strong></p>
+            <p className={styles.stat}>Bad: <strong>{bad}</strong></p>
+            <p className={styles.stat}>Total: <strong>{totalVotes}</strong></p>
+            <p className={styles.stat}>Positive: <strong>{positiveRate}%</strong></p>
+        </div>
+    );
+
+}
