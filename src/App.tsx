@@ -14,8 +14,7 @@ export default function App() {
     neutral: 0,
     bad: 0
   });
-
-  const { good, neutral, bad } = votes;
+  const totalVotes = votes.good + votes.neutral + votes.bad;
 
   const handleVote = (type: VoteType) => {
     setVotes(prev => ({
@@ -37,13 +36,13 @@ export default function App() {
       <VoteOptions 
       onVote={handleVote} 
       onReset={resetVotes} 
-      canReset={good + neutral + bad > 0} />
-      {good + neutral + bad > 0
+      canReset={totalVotes > 0} />
+      {totalVotes > 0
         ? <VoteStats 
             votes={votes} 
-            totalVotes={good + neutral + bad} 
-            positiveRate={good > 0
-               ? Math.round((good / (good + neutral + bad)) * 100)
+            totalVotes={totalVotes} 
+            positiveRate={votes.good > 0
+               ? Math.round((votes.good / totalVotes) * 100)
                : 0} />
         : <Notification />}
     </div>
