@@ -14,6 +14,9 @@ export default function App() {
     neutral: 0,
     bad: 0
   });
+
+  const { good, neutral, bad } = votes;
+
   const handleVote = (type: VoteType) => {
     setVotes(prev => ({
       ...prev,
@@ -31,8 +34,18 @@ export default function App() {
   return (
     <div className={css.app}>
             <CafeInfo />
-      <VoteOptions onVote={handleVote} onReset={resetVotes} canReset={votes.good + votes.neutral + votes.bad > 0 ? true : false} />
-      {votes.good + votes.neutral + votes.bad > 0 ? <VoteStats votes={votes} totalVotes={votes.good + votes.neutral + votes.bad} positiveRate={votes.good > 0 ? Math.round((votes.good / (votes.good + votes.neutral + votes.bad)) * 100) : 0} /> : <Notification />}
+      <VoteOptions 
+      onVote={handleVote} 
+      onReset={resetVotes} 
+      canReset={good + neutral + bad > 0} />
+      {good + neutral + bad > 0
+        ? <VoteStats 
+            votes={votes} 
+            totalVotes={good + neutral + bad} 
+            positiveRate={good > 0
+               ? Math.round((good / (good + neutral + bad)) * 100)
+               : 0} />
+        : <Notification />}
     </div>
   );
 }
